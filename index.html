@@ -10,9 +10,6 @@
     <!-- Turn OFF default phone number formatting in MS EDGE -->
     <meta name="format-detection" content="telephone=no">
 
-    <!-- Local CSS -->
-    <link rel="stylesheet" href="css/">
-
     <!-- PLUGIN CSS -->
     <link rel="stylesheet" href="css/memogame.css">
 
@@ -28,7 +25,34 @@
 </head>
 
 <body>
+    <h1>TH Memo Game v. 1.1</h1>
 
+    <div id="memoGameInfo">
+        <div id="memoGameStartParameters">
+            tiles:
+            <button class="memoGamePlusMinus minus" type="button">-</button>
+            <p id="memoGameTilesNumber">16</p>
+            <button class="memoGamePlusMinus plus" type="button">+</button>
+            <button id="memoGameStartButton" type="button">new game</button>
+        </div>
+
+        <div id="memoGameScore">
+            score:
+            <p id="memoGameCurrentScore">0</p>
+        </div>
+    </div>
+
+
+
+    <div id="memoGameContainer">
+    </div>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    <!-- PLUGIN JS -->
+    <script src="js/th-memogame-1.1.js"></script>
 </body>
 
 </html>

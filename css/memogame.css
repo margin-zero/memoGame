@@ -1,3 +1,265 @@
-body {
-    font: inherit;
+#memoGameInfo {
+    padding: 0 16px;
+    background: #e8e8e8;
+    overflow: auto;
+    min-width: 360px;
+}
+
+#memoGameInfo #memoGameStartParameters {
+    display: inline-block;
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.6);
+    overflow: auto;
+}
+
+#memoGameInfo #memoGameStartParameters .memoGamePlusMinus, #memoGameInfo #memoGameStartParameters #memoGameTilesNumber, #memoGameInfo #memoGameStartParameters #memoGameStartButton {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    line-height: 60px;
+    font-size: 20px;
+}
+
+#memoGameInfo #memoGameStartParameters .memoGamePlusMinus {
+    color: #fff;
+    font-weight: bold;
+    background: #666;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 8px;
+    border: none;
+}
+
+#memoGameInfo #memoGameStartParameters .memoGamePlusMinus.minus {
+    margin-left: 10px;
+}
+
+#memoGameInfo #memoGameStartParameters .memoGamePlusMinus:hover {
+    color: lightgreen;
+}
+
+#memoGameInfo #memoGameStartParameters #memoGameStartButton {
+    margin-left: 20px;
+    padding: 0 16px;
+    background: #666;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+}
+
+#memoGameInfo #memoGameStartParameters #memoGameTilesNumber {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+#memoGameInfo #memoGameScore {
+    display: inline-block;
+    padding: 0;
+    height: 60px;
+    font-size: 20px;
+    line-height: 60px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+#memoGameInfo #memoGameScore #memoGameCurrentScore {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+@media only screen and (min-width: 1px) and (max-width: 479px) {
+    #memoGameInfo {
+        text-align: center;
+    }
+    #memoGameInfo #memoGameStartParameters {
+        display: inline-block;
+        float: none;
+    }
+    #memoGameInfo #memoGameScore {
+        float: none;
+        clear: both;
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    #memoGameStartParameters {
+        float: right;
+        margin: 0;
+    }
+    #memoGameScore {
+        float: left;
+        margin: 0;
+    }
+}
+
+button, button:active, button:focus {
+    border: none;
+    outline: none;
+}
+
+.memoGameTile {
+    width: 140px;
+    height: 140px;
+    display: inline-block;
+    margin: 10px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.memoGameTile .cardFront, .memoGameTile .cardBack {
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: transform 1s;
+    -moz-transition: transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+}
+
+.memoGameTile .cardBack {
+    background: lightcoral;
+    width: 140px;
+    height: 140px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 8px;
+}
+
+.memoGameTile .cardFront {
+    background: lightblue;
+    width: 140px;
+    height: 140px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.memoGameTile .cardFront p {
+    font-size: 100px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.9);
+    line-height: 140px;
+    margin: 0;
+    padding: 0;
+    -webkit-transition: color .5s;
+    -moz-transition: color .5s;
+    -o-transition: color .5s;
+    transition: color .5s;
+}
+
+.memoGameTile.invisible .cardBack {
+    -webkit-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+
+.memoGameTile.invisible .cardFront {
+    -webkit-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.memoGameTile.visible .cardBack {
+    -webkit-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.memoGameTile.visible .cardFront {
+    -webkit-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+
+.memoGameTile.ready .cardFront>p {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (max-width: 479px) {
+    .memoGameTile {
+        width: 70px;
+        height: 70px;
+    }
+    .memoGameTile .cardFront, .memoGameTile .cardBack {
+        width: 70px;
+        height: 70px;
+    }
+    .memoGameTile .cardFront>p {
+        line-height: 70px;
+        font-size: 50px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .memoGameTile {
+        width: 90px;
+        height: 90px;
+    }
+    .memoGameTile .cardFront, .memoGameTile .cardBack {
+        width: 90px;
+        height: 90px;
+    }
+    .memoGameTile .cardFront>p {
+        line-height: 90px;
+        font-size: 60px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .memoGameTile {
+        width: 110px;
+        height: 110px;
+    }
+    .memoGameTile .cardFront, .memoGameTile .cardBack {
+        width: 110px;
+        height: 110px;
+    }
+    .memoGameTile .cardFront>p {
+        line-height: 110px;
+        font-size: 76px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .memoGameTile {
+        width: 130px;
+        height: 130px;
+    }
+    .memoGameTile .cardFront, .memoGameTile .cardBack {
+        width: 130px;
+        height: 130px;
+    }
+    .memoGameTile .cardFront>p {
+        line-height: 130px;
+        font-size: 96px;
+    }
+}
+
+#memoGameContainer {
+    text-align: center;
+}
+
+html {
+    font-size: 1em;
 }
