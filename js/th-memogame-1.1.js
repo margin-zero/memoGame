@@ -12,8 +12,7 @@ function thMemoGameRun() {
 
     $("#memoGameTilesNumber").text(memoTiles); // display default (initial) numer of tiles
 
-    // add "plus" & "minus" button functionality
-    $(".memoGamePlusMinus").click(function() {
+    $(".memoGamePlusMinus").click(function() { // add "plus" & "minus" button functionality
         var memoTiles = parseInt($("#memoGameTilesNumber").text(), 10);
         if ($(this).is(".plus")) { memoTiles = memoTiles + 2; };
         if ($(this).is(".minus")) { memoTiles = memoTiles - 2; };
@@ -22,7 +21,7 @@ function thMemoGameRun() {
         $("#memoGameTilesNumber").text(memoTiles);
     });
 
-    $("#memoGameStartButton").click(function() {
+    $("#memoGameStartButton").click(function() { // start button functionality
 
         $("#memoGameCurrentScore").text(0); // reset current game score
         $("#memoGameContainer").fadeOut(500); // hide game container
@@ -48,14 +47,12 @@ function thMemoGameInitTiles() {
 
     $("#memoGameContainer").empty(); // remove all children of game container (all tiles)
 
-    // prepare table of values
-    for (i = 0; i < (parseInt((memoTiles / 2), 10)); i++) {
+    for (i = 0; i < (parseInt((memoTiles / 2), 10)); i++) { // prepare table of values
         memoTilesValues.push(String.fromCharCode(i + 65));
         memoTilesValues.push(String.fromCharCode(i + 65));
     };
 
-    // scramble table of values
-    for (i = 0; i < 100; i++) {
+    for (i = 0; i < 100; i++) { // scramble table of values
         x = randomNumber(0, memoTilesValues.length - 1);
         y = randomNumber(0, memoTilesValues.length - 1);
         oldValue = memoTilesValues[x];
@@ -63,8 +60,7 @@ function thMemoGameInitTiles() {
         memoTilesValues[y] = oldValue;
     };
 
-    // create tiles in container and give them corresponding value from table of values
-    for (i = 0; i < memoTiles; i++) {
+    for (i = 0; i < memoTiles; i++) { // create tiles in container and give them corresponding value from table of values
         $("#memoGameContainer").append("<div class='memoGameTile invisible'><div class='cardBack'></div><div class='cardFront'><p></p></div></div>");
         $(".memoGameTile>.cardFront>p").eq(i).append(memoTilesValues[i]);
     };
@@ -75,9 +71,6 @@ function thMemoGameTileClick(clickedTile) {
 
     var $this = clickedTile;
     var visibleTilesCount;
-
-    console.log(clickedTile);
-    console.log('visible=' + $this.is(".visible"));
 
     if ($this.is(":not(.visible)") || ($this.is(".visible") && ($(".memoGameTile.visible:not(.ready)").length == 2))) {
         $("#memoGameCurrentScore").text(parseInt($("#memoGameCurrentScore").text(), 10) + 1);
